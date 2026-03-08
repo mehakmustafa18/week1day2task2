@@ -15,10 +15,12 @@
       color: #222;
       padding: 30px 10px;
     }
-   .wraper {
+
+    .wraper {
       max-width: 1440px;
       margin: 0 auto;
     }
+
     /* Page wrapper */
     .cv {
       background: #fff;
@@ -63,8 +65,10 @@
       grid-template-columns: 110px 1fr;
       gap: 0 18px;
       border-top: 1px solid #bbb;
-      padding: 10px 0 10px;
+      padding: 10px 0;
     }
+    
+
     .sec-label {
       font-size: 12.5px;
       font-weight: 700;
@@ -102,6 +106,8 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px;
     }
     .job-company { font-size: 13px; font-weight: 700; }
     .job-date { font-size: 12px; color: #333; white-space: nowrap; }
@@ -110,6 +116,8 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px;
     }
     .job-title { font-size: 12px; font-style: italic; color: #333; }
     .job-location { font-size: 12px; color: #333; }
@@ -118,7 +126,7 @@
     .job-url a { color: #1a6b3c; text-decoration: none; }
     .job-url a:hover { text-decoration: underline; }
 
-    .job ul { padding-left: 16px; margin: 0; }
+    .job ul { padding-left: 0; margin: 0; }
     .job ul li {
       font-size: 12.5px;
       color: #222;
@@ -141,12 +149,16 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px;
     }
     .edu-name { font-size: 13px; font-weight: 700; }
     .edu-date { font-size: 12px; color: #333; }
     .edu-sub {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2px;
       font-size: 12px;
       color: #333;
     }
@@ -167,9 +179,9 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 6px 16px;
     }
-    .skill-cat  { font-size: 13px; font-weight: 700; margin-bottom: 1px; }
-    .skill-level{ font-size: 12px; color: #555; margin-bottom: 3px; }
-    .skill-list { font-size: 12.5px; color: #222; line-height: 1.5; }
+    .skill-cat   { font-size: 13px; font-weight: 700; margin-bottom: 1px; }
+    .skill-level { font-size: 12px; color: #555; margin-bottom: 3px; }
+    .skill-list  { font-size: 12.5px; color: #222; line-height: 1.5; }
 
     /* ── CERTIFICATIONS ── */
     .certs-grid {
@@ -178,7 +190,7 @@
       gap: 0 10px;
       align-items: start;
     }
-    .cert-title { font-size: 13px; font-weight: 700; margin-bottom: 1px; }
+    .cert-title  { font-size: 13px; font-weight: 700; margin-bottom: 1px; }
     .cert-issuer { font-size: 12.5px; color: #333; }
     .cert-year {
       font-size: 13px;
@@ -200,14 +212,127 @@
     .ref-text { font-size: 12.5px; color: #222; }
 
     /* Icon colors */
-    .icon-li   { color: #0077b5; }
-    .icon-gh   { color: #333; }
-    .icon-so   { color: #f48024; }
+    .icon-li { color: #0077b5; }
+    .icon-gh { color: #333; }
+    .icon-so { color: #f48024; }
     .icon-link { color: #1a6b3c; }
+
+
+    /*  TABLET  (max-width: 768px) */
+    @media (max-width: 768px) {
+      body { padding: 16px 8px; }
+
+      .cv { padding: 24px 22px 30px; }
+
+      .header h1 { font-size: 20px; }
+      .header .subtitle { font-size: 12.5px; }
+      .header .contact { font-size: 11.5px; gap: 4px 12px; }
+
+      /* Stack label above content */
+      .section {
+        grid-template-columns: 1fr;
+        gap: 4px 0;
+        padding: 10px 0;
+      }
+
+      .sec-label {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        color: #555;
+        margin-bottom: 6px;
+      }
+
+      /* Profiles: 3 cols → 2 cols on tablet */
+      .profiles-grid { grid-template-columns: repeat(2, 1fr); gap: 8px 0; }
+
+      /* Projects: 2 cols → 1 col */
+      .projects-grid { grid-template-columns: 1fr; gap: 12px 0; }
+
+      /* Skills: 3 cols → 2 cols */
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 10px 16px; }
+
+      /* Certs: keep layout but shrink font */
+      .cert-title  { font-size: 12.5px; }
+      .cert-issuer { font-size: 12px; }
+
+      /* Languages: keep 2 cols */
+      .lang-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+
+    /*  MOBILE  (max-width: 480px) */
+    @media (max-width: 480px) {
+      body { padding: 0; background: #fff; }
+
+      .cv {
+        padding: 20px 16px 28px;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .header h1 { font-size: 18px; }
+      .header .subtitle { font-size: 12px; }
+      .header .contact {
+        font-size: 11px;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+      }
+
+      /* Full-width stacked layout */
+      .section { grid-template-columns: 1fr; }
+
+      /* Profiles: 3 cols → 1 col */
+      .profiles-grid { grid-template-columns: 1fr; gap: 10px 0; }
+
+      /* Projects: 1 col */
+      .projects-grid { grid-template-columns: 1fr; gap: 14px 0; }
+
+      /* Skills: 3 cols → 1 col */
+      .skills-grid { grid-template-columns: 1fr; gap: 12px 0; }
+
+      /* Certs: side-by-side → stacked */
+      .certs-grid {
+        grid-template-columns: 1fr;
+        gap: 10px 0;
+      }
+      .cert-year {
+        text-align: left;
+        font-size: 12px;
+        color: #777;
+        font-weight: 400;
+        padding-top: 0;
+      }
+      /* Hide the empty spacer cell */
+      .certs-grid div[style] { display: none; }
+
+      /* Languages: 2 cols → 1 col */
+      .lang-grid { grid-template-columns: 1fr; gap: 10px 0; }
+
+      /* Job dates wrap below company name on small screens */
+      .job-header { flex-direction: column; gap: 1px; }
+      .job-sub    { flex-direction: column; gap: 1px; }
+      .edu-row    { flex-direction: column; gap: 1px; }
+      .edu-sub    { flex-direction: column; gap: 1px; }
+
+      .job-date, .job-location, .edu-date { white-space: normal; }
+
+      /* Slightly larger touch-friendly text */
+      .summary-text,
+      .job ul li,
+      .project-desc,
+      .skill-list,
+      .cert-issuer,
+      .lang-level,
+      .ref-text { font-size: 13px; }
+    }
   </style>
 </head>
 <body>
-    <div class="wraper">
+<div class="wraper">
 <div class="cv">
 
   <!-- HEADER -->
@@ -398,6 +523,7 @@
       <p class="ref-text"><strong>Available upon request</strong></p>
     </div>
   </div>
+
 </div>
 </div>
 </body>
