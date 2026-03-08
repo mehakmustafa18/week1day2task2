@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>John Doe – CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f0f0f0;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      color: #222;
+      padding: 30px 10px;
+    }
+   .wraper {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    /* Page wrapper */
+    .cv {
+      background: #fff;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 36px 44px 44px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+    .header .subtitle {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 6px;
+    }
+    .header .contact {
+      font-size: 12px;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+    }
+    .header .contact span { display: flex; align-items: center; gap: 4px; }
+    .header .contact a { color: #1a6b3c; text-decoration: none; }
+    .header .contact a:hover { text-decoration: underline; }
+
+    /* ── SECTION ROW ── */
+    .section {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0 18px;
+      border-top: 1px solid #bbb;
+      padding: 10px 0 10px;
+    }
+    .sec-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      padding-top: 2px;
+      line-height: 1.4;
+    }
+
+    .sec-content { line-height: 1.5; }
+
+    /* ── PROFILES ── */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px 0;
+    }
+    .profile-item .handle {
+      font-size: 12.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .profile-item .platform { font-size: 11.5px; color: #666; }
+    .profile-item .handle svg { width: 14px; height: 14px; }
+
+    /* ── SUMMARY ── */
+    .summary-text { font-size: 12.5px; line-height: 1.6; color: #222; }
+    .summary-text strong { font-weight: 700; }
+
+    /* ── EXPERIENCE ── */
+    .job { margin-bottom: 14px; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .job-company { font-size: 13px; font-weight: 700; }
+    .job-date { font-size: 12px; color: #333; white-space: nowrap; }
+
+    .job-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .job-title { font-size: 12px; font-style: italic; color: #333; }
+    .job-location { font-size: 12px; color: #333; }
+
+    .job-url { font-size: 12px; color: #1a6b3c; margin: 2px 0 5px; display: flex; align-items: center; gap: 4px; }
+    .job-url a { color: #1a6b3c; text-decoration: none; }
+    .job-url a:hover { text-decoration: underline; }
+
+    .job ul { padding-left: 16px; margin: 0; }
+    .job ul li {
+      font-size: 12.5px;
+      color: #222;
+      margin-bottom: 3px;
+      list-style: none;
+      position: relative;
+      padding-left: 14px;
+    }
+    .job ul li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: #555;
+      font-size: 10px;
+      top: 1px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .edu-name { font-size: 13px; font-weight: 700; }
+    .edu-date { font-size: 12px; color: #333; }
+    .edu-sub {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #333;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+    }
+    .project-title { font-size: 13px; font-weight: 700; margin-bottom: 1px; }
+    .project-role  { font-size: 12px; color: #555; margin-bottom: 4px; }
+    .project-desc  { font-size: 12.5px; color: #222; line-height: 1.5; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px 16px;
+    }
+    .skill-cat  { font-size: 13px; font-weight: 700; margin-bottom: 1px; }
+    .skill-level{ font-size: 12px; color: #555; margin-bottom: 3px; }
+    .skill-list { font-size: 12.5px; color: #222; line-height: 1.5; }
+
+    /* ── CERTIFICATIONS ── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0 10px;
+      align-items: start;
+    }
+    .cert-title { font-size: 13px; font-weight: 700; margin-bottom: 1px; }
+    .cert-issuer { font-size: 12.5px; color: #333; }
+    .cert-year {
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      padding-top: 2px;
+    }
+
+    /* ── LANGUAGES ── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 24px;
+    }
+    .lang-name  { font-size: 13px; font-weight: 700; margin-bottom: 1px; }
+    .lang-level { font-size: 12.5px; color: #333; }
+
+    /* ── REFERENCES ── */
+    .ref-text { font-size: 12.5px; color: #222; }
+
+    /* Icon colors */
+    .icon-li   { color: #0077b5; }
+    .icon-gh   { color: #333; }
+    .icon-so   { color: #f48024; }
+    .icon-link { color: #1a6b3c; }
+  </style>
+</head>
+<body>
+    <div class="wraper">
+<div class="cv">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>John Doe</h1>
+    <div class="subtitle">Creative and Innovative Web Developer</div>
+    <div class="contact">
+      <span>📍 Pleasantville, CA 94588</span>
+      <span>📞 (555) 123-4567</span>
+      <span>✉ john.doe@gmail.com</span>
+      <span>🌐 <a href="https://johndoe.me/">https://johndoe.me/</a></span>
+    </div>
+  </div>
+
+  <!-- PROFILES -->
+  <div class="section">
+    <div class="sec-label">Profiles</div>
+    <div class="sec-content">
+      <div class="profiles-grid">
+        <div class="profile-item">
+          <div class="handle"><span class="icon-li">in</span> johndoe</div>
+          <div class="platform">LinkedIn</div>
+        </div>
+        <div class="profile-item">
+          <div class="handle">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            johndoe
+          </div>
+          <div class="platform">GitHub</div>
+        </div>
+        <div class="profile-item">
+          <div class="handle"><span class="icon-so">⬡</span> johndoe</div>
+          <div class="platform">StackOverflow</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="sec-label">Summary</div>
+    <div class="sec-content">
+      <p class="summary-text">Innovative Web Developer with 5 years of experience in building impactful and user-friendly websites and applications. Specializes in <strong>front-end technologies</strong> and passionate about modern web standards and cutting-edge development techniques. Proven track record of leading successful projects from concept to deployment.</p>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="sec-label">Experience</div>
+    <div class="sec-content">
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">Creative Solutions Inc.</span>
+          <span class="job-date"><strong>January 2019 to Present</strong></span>
+        </div>
+        <div class="job-sub">
+          <span class="job-title">Senior Web Developer</span>
+          <span class="job-location">San Francisco, CA</span>
+        </div>
+        <div class="job-url">🔗 <a href="#">https://creativesolutions.inc/</a></div>
+        <ul>
+          <li>Spearheaded the redesign of the main product website, resulting in a 40% increase in user engagement.</li>
+          <li>Developed and implemented a new responsive framework, improving cross-device compatibility.</li>
+          <li>Mentored a team of four junior developers, fostering a culture of technical excellence.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-company">TechAdvancers</span>
+          <span class="job-date"><strong>June 2016 to December 2018</strong></span>
+        </div>
+        <div class="job-sub">
+          <span class="job-title">Web Developer</span>
+          <span class="job-location">San Jose, CA</span>
+        </div>
+        <div class="job-url">🔗 <a href="#">https://techadvancers.com/</a></div>
+        <ul>
+          <li>Collaborated in a team of 10 to develop high-quality web applications using React.js and Node.js.</li>
+          <li>Managed the integration of third-party services such as Stripe for payments and Twilio for SMS services.</li>
+          <li>Optimized application performance, achieving a 30% reduction in load times.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="sec-label">Education</div>
+    <div class="sec-content">
+      <div class="edu-row">
+        <span class="edu-name">University of California</span>
+        <span class="edu-date"><strong>August 2012 to May 2016</strong></span>
+      </div>
+      <div class="edu-sub">
+        <span>Berkeley, CA</span>
+        <span>Bachelor's in Computer Science</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <div class="sec-label">Projects</div>
+    <div class="sec-content">
+      <div class="projects-grid">
+        <div>
+          <div class="project-title">E-Commerce Platform</div>
+          <div class="project-role">Project Lead</div>
+          <div class="project-desc">Led the development of a full-stack e-commerce platform, improving sales conversion by 25%.</div>
+        </div>
+        <div>
+          <div class="project-title">Interactive Dashboard</div>
+          <div class="project-role">Frontend Developer</div>
+          <div class="project-desc">Created an interactive analytics dashboard for a SaaS application, enhancing data visualization for clients.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="sec-label">Skills</div>
+    <div class="sec-content">
+      <div class="skills-grid">
+        <div>
+          <div class="skill-cat">Web Technologies</div>
+          <div class="skill-level">Advanced</div>
+          <div class="skill-list">HTML5, JavaScript, PHP, Python</div>
+        </div>
+        <div>
+          <div class="skill-cat">Web Frameworks</div>
+          <div class="skill-level">Intermediate</div>
+          <div class="skill-list">React.js, Angular, Vue.js, Laravel, Django</div>
+        </div>
+        <div>
+          <div class="skill-cat">Tools</div>
+          <div class="skill-level">Intermediate</div>
+          <div class="skill-list">Webpack, Git, Jenkins, Docker, JIRA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section">
+    <div class="sec-label">Certifications</div>
+    <div class="sec-content">
+      <div class="certs-grid">
+        <div>
+          <div class="cert-title">Full-Stack Web Development</div>
+          <div class="cert-issuer">CodeAcademy</div>
+        </div>
+        <div class="cert-year">2020</div>
+        <div>
+          <div class="cert-title">AWS Certified Developer</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+        <div style="grid-column:1;"></div>
+        <div class="cert-year">2019</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="section">
+    <div class="sec-label">Languages</div>
+    <div class="sec-content">
+      <div class="lang-grid">
+        <div>
+          <div class="lang-name">English</div>
+          <div class="lang-level">Native Speaker</div>
+        </div>
+        <div>
+          <div class="lang-name">Spanish</div>
+          <div class="lang-level">Intermediate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="section">
+    <div class="sec-label">References</div>
+    <div class="sec-content">
+      <p class="ref-text"><strong>Available upon request</strong></p>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
